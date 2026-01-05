@@ -1,6 +1,7 @@
 <p align="center">
-  <img src="assets/logo.png" alt="CompuTask logo" width="96">
+  <img src="./assets/logo.png" alt="CompuTask logo" width="96">
 </p>
+
 # CompuTask
 
 **CompuTask is a simple, lightweight, and honest task manager - built for modest computers and real people.**
@@ -88,4 +89,5 @@ CompuTask is built on a simple idea:
 > Not every computer is new.  
 > Not every user wants complexity.  
 > And software can still be simple, useful, and respectful.
+
 
