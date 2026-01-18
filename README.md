@@ -90,4 +90,54 @@ CompuTask is built on a simple idea:
 > Not every user wants complexity.  
 > And software can still be simple, useful, and respectful.
 
+---
 
+---- ⬇️ In portuguese ----
+
+## 🧩 Dependência: Tkinter
+
+O CompuTask utiliza Tkinter, que é a biblioteca gráfica padrão do Python.
+Em algumas distribuições Linux, o Tkinter não vem instalado por padrão, mesmo com o Python instalado.
+Se o aplicativo não abrir ou mostrar erro relacionado a tkinter, siga as instruções abaixo.
+
+## 🐧 Linux
+
+🔹 Debian / Ubuntu / Linux Mint / Pop!_OS / Xubuntu / Lubuntu
+Bash:
+sudo apt update
+sudo apt install python3-tk
+
+🔹 Fedora / Nobara / RHEL / CentOS / Rocky Linux
+Bash
+sudo dnf install python3-tkinter
+
+🔹 Arch Linux / Manjaro / EndeavourOS
+Bash
+sudo pacman -S tk
+
+🔹 openSUSE
+Bash
+sudo zypper install python3-tk
+
+## ✅ Como testar se o Tkinter está funcionando
+No terminal:
+Copiar código
+Bash
+python3 - <<EOF
+import tkinter as tk
+tk.Tk()
+print("Tkinter OK!")
+EOF
+Se uma janelinha abrir, está tudo certo ✔️
+
+## 📦 AppImage e Tkinter
+
+⚠️ Importante
+Mesmo usando AppImage, o Tkinter depende de bibliotecas gráficas do sistema (X11 / Wayland).
+Por isso, é necessário que o Tkinter esteja instalado no sistema hospedeiro.
+Isso é normal para aplicações baseadas em Tk.
+
+🧠 Por que isso acontece?
+O Python vem instalado
+O Tkinter é empacotado separadamente
+Algumas distros optam por não instalar componentes gráficos por padrão
