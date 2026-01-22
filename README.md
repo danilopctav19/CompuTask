@@ -70,7 +70,7 @@ Your data stays with you.
 
 ## 📦 Project status
 
-**Version:** CompuTask 0.7 Beta  
+**Version:** CompuTask 0.9 Beta  
 
 The project is under active development and may receive improvements, while prioritizing stability, simplicity, and compatibility.
 
@@ -92,37 +92,31 @@ CompuTask is built on a simple idea:
 
 ---
 
----- ⬇️ In portuguese ----
+## 🧩 Dependency: Tkinter
 
-## 🧩 Dependência: Tkinter
+CompuTask uses Tkinter, which is the standard graphics library for Python.
 
-O CompuTask utiliza Tkinter, que é a biblioteca gráfica padrão do Python.
-Em algumas distribuições Linux, o Tkinter não vem instalado por padrão, mesmo com o Python instalado.
-Se o aplicativo não abrir ou mostrar erro relacionado a tkinter, siga as instruções abaixo.
+In some Linux distributions, Tkinter is not installed by default, even with Python installed.
+
+If the application does not open or shows an error related to Tkinter, follow the instructions below.
 
 ## 🐧 Linux
 
-🔹 Debian / Ubuntu / Linux Mint / Pop!_OS / Xubuntu / Lubuntu
-Bash:
+🔹 Debian / Ubuntu / Linux Mint / Pop!_OS / Xubuntu / Lubuntu:
 sudo apt update
 sudo apt install python3-tk
 
-🔹 Fedora / Nobara / RHEL / CentOS / Rocky Linux
-Bash
+🔹 Fedora / Nobara / RHEL / CentOS / Rocky Linux:
 sudo dnf install python3-tkinter
 
-🔹 Arch Linux / Manjaro / EndeavourOS
-Bash
+🔹 Arch Linux / Manjaro / EndeavourOS:
 sudo pacman -S tk
 
-🔹 openSUSE
-Bash
+🔹 openSUSE:
 sudo zypper install python3-tk
 
-## ✅ Como testar se o Tkinter está funcionando
-No terminal:
-Copiar código
-Bash
+## ✅ How to test if Tkinter is working
+In terminal:
 python3 - <<EOF
 import tkinter as tk
 tk.Tk()
@@ -130,14 +124,18 @@ print("Tkinter OK!")
 EOF
 Se uma janelinha abrir, está tudo certo ✔️
 
-## 📦 AppImage e Tkinter
+## 📦 AppImage and Tkinter
 
-⚠️ Importante
-Mesmo usando AppImage, o Tkinter depende de bibliotecas gráficas do sistema (X11 / Wayland).
-Por isso, é necessário que o Tkinter esteja instalado no sistema hospedeiro.
-Isso é normal para aplicações baseadas em Tk.
+⚠️ Important
+Even when using AppImage, Tkinter depends on system graphics libraries (X11 / Wayland).
 
-🧠 Por que isso acontece?
-O Python vem instalado
-O Tkinter é empacotado separadamente
-Algumas distros optam por não instalar componentes gráficos por padrão
+Therefore, Tkinter must be installed on the host system.
+
+This is normal for Tk-based applications.
+
+🧠 Why does this happen?
+
+Python comes pre-installed.
+Tkinter is packaged separately.
+Some distributions choose not to install graphical components by default.
+
