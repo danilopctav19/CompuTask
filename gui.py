@@ -1,4 +1,4 @@
-# CompuTask v0.6
+# CompuTask v0.9
 import json
 import os
 import tkinter as tk 
@@ -14,7 +14,7 @@ janela.title("CompuTask")
 janela.geometry("400x450")
 
 # Titulo
-titulo = tk.Label(janela, text="CompuTask v0.6", font=("Arial", 16)) 
+titulo = tk.Label(janela, text="CompuTask v0.9", font=("Arial", 16)) 
 titulo.pack(pady=10)
 
 # Status
@@ -86,15 +86,22 @@ def salvar_tarefas(tarefas):
 
 def carregar_json():
     global tarefas
-    if os.path.exists(arquivo):
-        with open(arquivo, "r", encoding="utf-8") as f:
-            dados = json.load(f)
-        tarefas = []
-        for item in dados:
-            if isinstance(item, dict):
-                tarefas.append(item)
-            else:
-                tarefas.append({"texto": str(item), "concluida": False})
+    tarefas = []
+
+    if not os.path.exists(arquivo):
+        return
+
+    with open(arquivo, "r", encoding="utf-8") as f:
+        dados = json.load(f)
+
+    for item in dados:
+        if isinstance(item, dict):
+            tarefas.append(item)
+        else:
+            tarefas.append({
+                "texto": str(item),
+                "concluida": False
+            })
     
 def mudar_filtro(novo_filtro):
     global filtro_atual
@@ -133,5 +140,6 @@ btn_concluidas.pack(side="left", padx=5)
 # Loop da Janela
 atualizar_lista()
 atualizar_status()
+
 
 janela.mainloop()
