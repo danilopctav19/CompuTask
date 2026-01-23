@@ -8,6 +8,10 @@
 
 ---
 
+## Oficial Site
+Visit the CompuTask website to download the program and view simple usage information:
+👉
+
 ## ✨ What is CompuTask?
 
 CompuTask is a task list application focused on simplicity, performance, and local control.
@@ -103,7 +107,7 @@ If the application does not open or shows an error related to Tkinter, follow th
 ## 🐧 Linux
 
 🔹 Debian / Ubuntu / Linux Mint / Pop!_OS / Xubuntu / Lubuntu:
-sudo apt update
+sudo apt update |
 sudo apt install python3-tk
 
 🔹 Fedora / Nobara / RHEL / CentOS / Rocky Linux:
@@ -122,7 +126,7 @@ import tkinter as tk
 tk.Tk()
 print("Tkinter OK!")
 EOF
-Se uma janelinha abrir, está tudo certo ✔️
+If window open, Tkinter is OK ✔️
 
 ## 📦 AppImage and Tkinter
 
@@ -138,4 +142,5 @@ This is normal for Tk-based applications.
 Python comes pre-installed.
 Tkinter is packaged separately.
 Some distributions choose not to install graphical components by default.
+
 
