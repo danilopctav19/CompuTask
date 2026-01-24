@@ -10,7 +10,7 @@
 
 ## Oficial Site
 Visit the CompuTask website to download the program and view simple usage information:
-👉
+👉 https://danilopctav19.github.io/CompuTask/
 
 ## ✨ What is CompuTask?
 
@@ -142,5 +142,6 @@ This is normal for Tk-based applications.
 Python comes pre-installed.
 Tkinter is packaged separately.
 Some distributions choose not to install graphical components by default.
+
 
 
