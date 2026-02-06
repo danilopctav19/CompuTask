@@ -1,21 +1,48 @@
-# CompuTask v0.9
+# CompuTask v1.0
 import json
+import sys
 import os
 import tkinter as tk 
+from tkinter import PhotoImage
 from tkinter import messagebox
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 arquivo = "tarefas.json"
 tarefas = []
-filtro_atual = "todas"
+janela = tk.Tk()
+janela.withdraw()
 
 # Janela principal
-janela = tk.Tk()
-janela.title("CompuTask")
-janela.geometry("400x450")
+splash = tk.Toplevel()
+splash.title("CompuTask 1.0")
+splash.geometry("300x150")
+splash.resizable(False, False)
+
+icon_path = "assets/logo_64x64.png"
+icon = tk.PhotoImage(file=resource_path("assets/logo_64x64.png"))
+splash.iconphoto(False, icon)
+
+status = tk.Label(
+    splash,
+    text="Carregando CompuTask...",
+    fg="gray",
+    font=("Segoe UI", 11)
+)
+status.pack(expand=True)
 
 # Titulo
 titulo = tk.Label(janela, text="CompuTask v0.9", font=("Arial", 16)) 
 titulo.pack(pady=10)
+
+# Entrada de texto
+entrada_tarefa = tk.Entry(janela)
+entrada_tarefa.pack(fill="x", padx=10)
 
 # Status
 status_texto = tk.StringVar()
@@ -23,17 +50,34 @@ status_texto.set("Nenhuma tarefa ainda")
 status = tk.Label(janela, textvariable=status_texto, font=("Arial", 10), fg="gray")
 status.pack(pady=5)
 
-# Campo para digitar
-entrada_tarefa = tk.Entry(janela)
-entrada_tarefa.pack(fill="x", padx=10, pady=5)
-
-# Lista de tarefas
-lista = tk.Listbox(janela)
-lista.pack(expand=True, fill="both", padx=10, pady=10)
-
 # Funções
+def montar_interface():
+    global lista, entrada_tarefa
+
+    janela.title("CompuTask")
+    janela.geometry("400x450")
+    janela.resizable(False, False)
+
+    lista = tk.Listbox(janela)
+    lista.pack(fill="both", expand=True, padx=10, pady=10)
+
+    btn_add = tk.Button(janela, text="Adicionar", command=adicionar_tarefa)
+    btn_add.pack(pady=5)
+
+    btn_con = tk.Button(janela, text="(Des)concluir", command=concluir_tarefa)
+    btn_con.pack()
+
+    btn_del = tk.Button(janela, text="Excluir", command=excluir_tarefa)
+    btn_del.pack()
+
+    carregar_tarefas()
+    for t in tarefas:
+        lista.insert(tk.END, t)
+
+    atualizar_lista()
+
 def adicionar_tarefa():
-    texto = entrada_tarefa.get().strip()
+    texto = entrada_tarefa.get()
     if not texto:
         return
     tarefas.append({"texto": texto, "concluida": False})
@@ -63,6 +107,7 @@ def excluir_tarefa():
         return
     indice = selecionado[0]
     del tarefas[indice]
+    salvar_tarefas()
     atualizar_lista()
     atualizar_status()
 
@@ -72,6 +117,22 @@ def atualizar_status():
     ativas = total - concluidas
     status_texto.set(f"{ativas} ativa(s) • {concluidas} concluída(s)")
 
+def carregar_tarefas():
+    global tarefas
+    if os.path.exists(arquivo):
+        try:
+            with open(arquivo, "r") as f:
+                tarefas = json.load(f)
+        except:
+            tarefas = []
+    else:
+        tarefas = []
+
+
+def salvar_tarefas():
+    with open (arquivo, "w", encoding="utf-8") as f:
+        json.dump(tarefas, f, ensure_ascii=False, indent=4)
+
 def atualizar_lista():
     lista.delete(0, tk.END)
     for tarefa in tarefas:
@@ -80,66 +141,14 @@ def atualizar_lista():
         prefixo = "🗹" if concluida else "☐"
         lista.insert(tk.END, prefixo + texto)
 
-def salvar_tarefas(tarefas):
-    with open (arquivo, "w", encoding="utf-8") as f:
-        json.dump(tarefas, f, ensure_ascii=False, indent=4)
-
-def carregar_json():
-    global tarefas
-    tarefas = []
-
-    if not os.path.exists(arquivo):
-        return
-
-    with open(arquivo, "r", encoding="utf-8") as f:
-        dados = json.load(f)
-
-    for item in dados:
-        if isinstance(item, dict):
-            tarefas.append(item)
-        else:
-            tarefas.append({
-                "texto": str(item),
-                "concluida": False
-            })
-    
-def mudar_filtro(novo_filtro):
-    global filtro_atual
-    filtro_atual = novo_filtro
-    atualizar_lista()
-
-def ao_selecionar_tarefa(event):
-    selecionado = lista.curselection()
-    if not selecionado:
-        return
-    indice = selecionado[0]
-    tarefa = tarefas[indice]
-    concluida_var = tk.BooleanVar
-    concluida_var.set(tarefa["concluida"])
-    lista.bind("<<ListboxSelect>>", ao_selecionar_tarefa)
-
-# Botões
-botao_add = tk.Button(janela, text="Adicionar Tarefa", command=adicionar_tarefa) 
-botao_add.pack(pady=2)
-
-botao_concluir = tk.Button(janela, text="(Des)concluir tarefa", command=concluir_tarefa)
-botao_concluir.pack(pady=2)
-
-botao_excluir = tk.Button(janela, text="Excluir tarefa", command=excluir_tarefa)
-botao_excluir.pack(pady=2)
-
-frame_filtros = tk.Frame(janela)
-frame_filtros.pack(pady=5)
-btn_todas = tk.Button(frame_filtros, text="Todas", command=lambda: mudar_filtro("todas"))
-btn_todas.pack(side="left", padx=5)
-btn_ativas = tk.Button(frame_filtros, text="Ativas", command=lambda: mudar_filtro("ativas"))
-btn_ativas.pack(side="left", padx=5)
-btn_concluidas = tk.Button(frame_filtros, text="Concluídas", command=lambda: mudar_filtro("concluidas"))
-btn_concluidas.pack(side="left", padx=5)
+def iniciar_app():
+    splash.destroy()
+    janela.deiconify()
+    montar_interface()
 
 # Loop da Janela
-atualizar_lista()
+carregar_tarefas()
 atualizar_status()
-
+splash.after(800, iniciar_app)
 
 janela.mainloop()
