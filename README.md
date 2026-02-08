@@ -4,144 +4,39 @@
 
 # CompuTask
 
-**CompuTask is a simple, lightweight, and honest task manager - built for modest computers and real people.**
+**CompuTask is a simple, lightweight, and offline task manager focused on clarity and stability.**
 
----
+It was designed to work reliably on both modern and legacy systems, without accounts, sync or unnecessary features.
 
-## Oficial Site
-Visit the CompuTask website to download the program and view simple usage information:
-👉 https://danilopctav19.github.io/CompuTask/
+## Features
 
-## ✨ What is CompuTask?
+- Simple task list
+- Mark tasks as completed
+- Persistent storage using a local JSON file
+- Lightweight graphical interface (Tkinter)
+- No internet connection required
 
-CompuTask is a task list application focused on simplicity, performance, and local control.
+## Platforms 
 
-It was created to run well on older or low-spec computers, without relying on internet access, online accounts, artificial intelligence, or cloud services.
+- Linux (AppImage)
+- Windows (exe)
 
-Here, a task is just a task.
+Tested on:
+- Linux Mint / Ubuntu-based systems
+- Windows 7 (legacy)
+- Windows 10 / 11
 
----
+## Usage
 
-## 🎯 Who is it for?
+Just run the application. Tasks are saved automatically in a local file (`tarefas.json`)
 
-CompuTask is for people who:
+## Philosophy
 
-- Use older or low-end computers
-- Prefer simple and straightforward software
-- Do not want accounts or cloud synchronization
-- Value privacy and local data control
-- Want a program that **just works**, without distractions
+CompuTask values:
+- usability over complexity
+- local data over cloud dependence
+- longevity over trends
 
----
+## License
 
-## 🚫 What CompuTask is not trying to be
-
-CompuTask is **not**:
-
-- An AI-powered application
-- An online service
-- A corporate project management tool
-- A product with ads or tracking
-- A platform that collects your data
-
-It does not try to compete with everything.  
-It only tries to be useful.
-
----
-
-## 🖥️ Compatibility
-
-CompuTask was designed to run in simple environments and works well on:
-
-- Windows
-- Linux (especially lightweight distributions)
-
-No heavy requirements. No unnecessary dependencies. Designed to respect older hardware
-
----
-
-## 🔒 Privacy
-
-CompuTask works with local data.
-
-- No account required
-- No data is sent to the internet
-- No information is collected
-
-Your data stays with you.
-
----
-
-## 📦 Project status
-
-**Version:** CompuTask 0.9 Beta  
-
-The project is under active development and may receive improvements, while prioritizing stability, simplicity, and compatibility.
-
----
-
-## 📜 License
-
-This project is distributed under the license described in the `LICENSE` file.
-
----
-
-## ❤️ Philosophy
-
-CompuTask is built on a simple idea:
-
-> Not every computer is new.  
-> Not every user wants complexity.  
-> And software can still be simple, useful, and respectful.
-
----
-
-## 🧩 Dependency: Tkinter
-
-CompuTask uses Tkinter, which is the standard graphics library for Python.
-
-In some Linux distributions, Tkinter is not installed by default, even with Python installed.
-
-If the application does not open or shows an error related to Tkinter, follow the instructions below.
-
-## 🐧 Linux
-
-🔹 Debian / Ubuntu / Linux Mint / Pop!_OS / Xubuntu / Lubuntu:
-sudo apt update |
-sudo apt install python3-tk
-
-🔹 Fedora / Nobara / RHEL / CentOS / Rocky Linux:
-sudo dnf install python3-tkinter
-
-🔹 Arch Linux / Manjaro / EndeavourOS:
-sudo pacman -S tk
-
-🔹 openSUSE:
-sudo zypper install python3-tk
-
-## ✅ How to test if Tkinter is working
-In terminal:
-python3 - <<EOF
-import tkinter as tk
-tk.Tk()
-print("Tkinter OK!")
-EOF
-If window open, Tkinter is OK ✔️
-
-## 📦 AppImage and Tkinter
-
-⚠️ Important
-Even when using AppImage, Tkinter depends on system graphics libraries (X11 / Wayland).
-
-Therefore, Tkinter must be installed on the host system.
-
-This is normal for Tk-based applications.
-
-🧠 Why does this happen?
-
-Python comes pre-installed.
-Tkinter is packaged separately.
-Some distributions choose not to install graphical components by default.
-
-
-
+MIT License
