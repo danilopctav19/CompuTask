@@ -37,6 +37,12 @@ CompuTask values:
 - local data over cloud dependence
 - longevity over trends
 
+## Contact
+
+Website: https://danilopctav19.github.io/CompuTask
+E-mail: computask.app@hotmail.com
+
 ## License
 
 MIT License
+
