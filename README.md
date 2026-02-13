@@ -40,9 +40,10 @@ CompuTask values:
 ## Contact
 
 Website: https://danilopctav19.github.io/CompuTask
-E-mail: computask.app@hotmail.com
+E-mail: computask.suporte@proton.me
 
 ## License
 
 MIT License
+
 
